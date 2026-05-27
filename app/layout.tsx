@@ -1,13 +1,15 @@
-import { Geist, Geist_Mono } from "next/font/google"
+import { DM_Sans, DM_Mono } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { WhatsAppButton } from "@/components/whatsapp-button"
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'})
+const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-sans" })
 
-const fontMono = Geist_Mono({
+const dmMono = DM_Mono({
   subsets: ["latin"],
+  weight: ["400", "500"],
   variable: "--font-mono",
 })
 
@@ -20,10 +22,13 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}
+      className={cn("scroll-smooth antialiased", dmMono.variable, "font-sans", dmSans.variable)}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+          <WhatsAppButton />
+        </ThemeProvider>
       </body>
     </html>
   )
